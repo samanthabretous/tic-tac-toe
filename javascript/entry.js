@@ -1,1 +1,2 @@
 Board.init();
+BoardActions.init();

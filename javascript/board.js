@@ -1,25 +1,28 @@
 const Board = (() => {
+  const emptyBoard = [null, null, null, null, null, null, null, null, null];
   const state = {
-    board: [null, null, null, null, null, null, null, null, null],
-    player: 'x'
-  }
-  const renderBoard = () => {
-    const board = document.getElementById('board-js');
-    state.board.forEach(() => {
-      const square = document.createElement('div');
-      square.classList.add('square');
-      board.appendChild(square);
-    });
+    board: emptyBoard,
+    player: 'red'
   };
   return {
     getPlayer() {
-
+      return state.player;
+    },
+    switchPlayer() {
+      state.player = state.player === 'red' ? 'blue' : 'red';
+      return state.player;
     },
     getBoard() {
-
+      return state.board;
+    },
+    resetBoard() {
+      state.board = emptyBoard;
+    },
+    updateBoard(index) {
+      state.board[index] = state.player;
+      this.switchPlayer()
     },
     init() {
-      renderBoard();
-    }
+    },
   }
 })()

@@ -2,14 +2,14 @@
   border-sizing: border-box;
 }
 
-.board{
+.board {
+  display: flex;
+  flex-wrap: wrap;
   width: 300px;
-
 }
 
 .square {
   box-sizing: border-box;
-  float: left;
   width: 100px;
   height: 100px;
   border: 1px solid black;
