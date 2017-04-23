@@ -5,14 +5,30 @@
     <title>TIC TAC TOE</title>
     <link rel="stylesheet" href="./css/style.css">
     <script type="text/javascript" src="./javascript/board.js" defer></script>
+    <script type="text/javascript" src="./javascript/game.js" defer></script>
+    <script type="text/javascript" src="./javascript/renderSVG.js" defer></script>
     <script type="text/javascript" src="./javascript/boardActions.js" defer></script>
     <script type="text/javascript" src="./javascript/entry.js" defer></script>
   </head>
   <body>
+    <aside>
+      <div class="player-container">
+        <div id="player1-js" class="player active">
+          <img src="./svg/x.svg" alt="player 1">
+          <span id="player 1 wins">0</span>
+        </div>
+        <div id="player2-js" class="player">
+          <img src="./svg/o.svg" alt="player 2">
+          <span id="player 2 wins">0</span>
+        </div>
+      </div>
+    </aside>
     <main>
       <section id="board-js" class="board">
         <!-- rendered board game -->
       </section>
+      <div id="show_winner-js" class="show_winner"></div>
     </main>
+    <button id="restart-js" class="restart">RESTART GAME</button>
   </body>
 </html>

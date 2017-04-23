@@ -17,6 +17,7 @@ const Board = (() => {
     },
     resetBoard() {
       state.board = emptyBoard;
+      state.player = 'red';
     },
     updateBoard(index) {
       state.board[index] = state.player;

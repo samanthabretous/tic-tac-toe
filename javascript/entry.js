@@ -1,2 +1,2 @@
-Board.init();
+Game.init();
 BoardActions.init();

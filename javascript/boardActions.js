@@ -1,4 +1,4 @@
-const BoardActions = ((Board) => {
+const BoardActions = ((Board, Game, RenderSVG) => {
   /**
   * re render entire board each time the board is clicked
   * render board base on the state to keep one source of truth
@@ -8,10 +8,7 @@ const BoardActions = ((Board) => {
     newBoard.id = 'board-js';
     newBoard.classList.add('board');
     Board.getBoard().forEach((color, index) => {
-      const square = document.createElement('div');
-      square.classList.add('square', color);
-      square.id = index;
-      newBoard.appendChild(square);
+      newBoard.appendChild(RenderSVG.init(color, index));
     });
     // replace the old board with the newly generated new board and re-add the listener
     const oldBoard = document.getElementById('board-js');
@@ -40,22 +37,25 @@ const BoardActions = ((Board) => {
       checkThree(3,4,5,player) ||
       checkThree(6,7,8,player)) {
         console.log('horizontal winner');
-      // outputElement.innerHTML = player + " won!";
+        Game.showWinner(player);
     // vertical winner
     } else if (checkThree(0,3,6,player) ||
       checkThree(1,4,7,player) ||
       checkThree(2,5,8,player)) {
-      console.log('vertical winner');
+        console.log('vertical winner');
+        Game.showWinner(player);
     // diagonal winner
     } else if (checkThree(0,4,8,player) ||
       checkThree(2,4,6,player)) {
         console.log('dia winner');
+        Game.showWinner(player);
     }
   }
   return {
+    renderBoard,
     init() {
       renderBoard();
       document.getElementById('board-js').addEventListener('click', handleClick)
     },
   }
-})(Board);
+})(Board, Game, RenderSVG);

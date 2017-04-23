@@ -1,7 +1,102 @@
-* {
-  border-sizing: border-box;
+/*
+  Table of Contents
+  1. Base Styles
+  2. Game Menu
+  3. Board
+  4. Footer
+*/
+
+/* -----------------------
+  1. Base Styles
+------------------------ */
+:root {
+  --purple: #69585F;
+  --lightpurple: #C3979F;
+  --green: #B8D8BA;
+  --seafoam: #78FFD6;
+  --lightgreen: #D9DBBC;
+  --lightcyan: #E1FAF9;
+  --cream: #FCDDBC;
+  --lightblue: #0AD3FF;
+  --blue: #08386D;
+  --darkblue: #1C3144;
+  --red: #C05746;
+  --board_border: 10px solid var(--lightgreen);
+}
+title {
+  display: none;
 }
 
+* {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: helvetica;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h4 {
+  margin: 0;
+}
+/* -----------------------
+  2. Game Menu
+------------------------ */
+aside {
+  width: 100%;
+  height: 20%;
+  background: var(--lightcyan);
+  box-shadow: 0 5px 5px var(--darkblue);
+
+}
+
+.player-container {
+  width: 50vw;
+  height: 7vh;
+  justify-content: space-between;
+  color: var(--lightcyan);
+  font-size: 1.5rem;
+}
+
+.player {
+  width: 45%;
+  height: 100%;
+  background: var(--red);
+  justify-content: space-between;
+  box-shadow: 0 0 10px #888888;
+  padding: 0 3%;
+}
+
+.active {
+  border-bottom: 4px solid var(--darkblue);
+}
+
+.player img {
+  width: auto;
+  height: 55%;
+}
+
+/* -----------------------
+  3. Board
+------------------------ */
+main {
+  width: 100%;
+  height: 70%;
+  background: var(--lightpurple);
+}
 .board {
   display: flex;
   flex-wrap: wrap;
@@ -9,18 +104,88 @@
 }
 
 .square {
-  box-sizing: border-box;
   width: 100px;
   height: 100px;
-  border: 1px solid black;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.square:nth-child(3n+0) {
+  border-left: 10px solid var(--purple);
+}
+
+.square:nth-child(3n -2) {
+  border-right: 10px solid var(--purple);
+}
+
+.square:nth-child(1),
+.square:nth-child(2),
+.square:nth-child(3) {
+  border-bottom: 10px solid var(--purple);
+}
+
+.square:nth-child(7),
+.square:nth-child(8),
+.square:nth-child(9) {
+  border-top: 10px solid var(--purple);
 }
 
 
-.red{
-  background-color: red;
+.square svg {
+  width: 85%;
+  height: auto;
+}
+
+
+line {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: dash 1s linear forwards;
+}
+
+.line1 {
+
+}
+
+.line2 {
+
+}
+
+circle {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: dash 1s linear forwards;
+  transform-origin: center;
+  transform: rotate(-30deg);
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.red {
 }
 
 .blue{
-  background-color: blue;
+}
+
+/* -----------------------
+  4. Footer
+------------------------ */
+.restart {
+  width: 100%;
+  height: 10%;
+  background: var(--lightcyan);
+  color: var(--lightpurple);
+  font: 24px helvetica;
+  box-shadow: 0 0 5px var(--darkblue);
+
+}
+
+.restart:hover {
+  background: var(--purple);
+  color: var(--lightcyan);
 }
