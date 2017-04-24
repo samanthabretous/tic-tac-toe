@@ -74,7 +74,7 @@ const RenderSVG = (() => {
         square.appendChild(svg)
       }
       // stop from re-animating all squares
-      if(lastClicked == index && !index) square.classList.add('animate');
+      if(lastClicked == index) square.classList.add('animate');
 
       square.classList.add('square', color);
       square.id = index;

@@ -53,15 +53,25 @@ const BoardActions = ((Board, RenderSVG, Game) => {
         Game.showWinner(player);
     }
   }
+  const handleReset = () => {
+    Board.resetBoard();
+    Game.setPlayer('red');
+    const winner = document.getElementById('show_winner-js');
+    winner.classList.remove('show');
+    const board = document.getElementById('board-js');
+    board.classList.remove('hide');
+    renderBoard();
+    // remove SVG from winner
+    const svgContainer = document.querySelector('#show_winner-js figure');
+    const svg = document.querySelector('#show_winner-js figure svg');
+    if (svg) svgContainer.removeChild(svg);
+  };
   return {
     renderBoard,
-    newGame() {
-      Board.resetBoard();
-      renderBoard();
-    },
     init() {
       renderBoard();
       document.getElementById('board-js').addEventListener('click', handleClick)
+      document.getElementById('restart-js').addEventListener('click', handleReset);
     },
   }
 })(Board, RenderSVG, Game);

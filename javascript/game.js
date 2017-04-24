@@ -1,35 +1,38 @@
 const Game = ((RenderSVG) => {
-  const player1 = {
-    element: document.getElementById('player1-js'),
-    color: 'red',
-  };
-  const player2 = {
-    element: document.getElementById('player2-js'),
-    color: 'blue',
-  };
   const state = {
-    winner: null,
-    currentPlayer: player1.color,
+    red: {
+      element: document.getElementById('player1-js'),
+      color: 'red',
+      wins: 0,
+    },
+    blue: {
+      element: document.getElementById('player2-js'),
+      color: 'blue',
+      wins: 0,
+    },
+    currentPlayer: 'red',
   };
-  const handleReset = () => {
-    // state.winner = null;
-    // const winner = document.getElementById('show_winner-js');
-    // winner.classList.remove('active');
-    // BoardActions.newGame();
-  };
+
   return {
     getPlayer() {
       return state.currentPlayer;
     },
+    setPlayer(color) {
+      this.switchPlayer();
+      state.currentPlayer = color === 'red'
+        ? state.red.color
+        : state.blue.color;
+      return state.currentPlayer;
+    },
     switchPlayer() {
       if (state.currentPlayer === 'red') {
-        player2.element.classList.add('active');
-        player1.element.classList.remove('active');
-        state.currentPlayer = player2.color;
+        state.blue.element.classList.add('active');
+        state.red.element.classList.remove('active');
+        state.currentPlayer = state.blue.color;
       } else {
-        player1.element.classList.add('active');
-        player2.element.classList.remove('active');
-        state.currentPlayer = player1.color;
+        state.red.element.classList.add('active');
+        state.blue.element.classList.remove('active');
+        state.currentPlayer = state.red.color;
       }
       return state.currentPlayer;
     },
@@ -43,7 +46,10 @@ const Game = ((RenderSVG) => {
       const svgContainer = document.querySelector('#show_winner-js figure');
       if (player) {
         const svg = RenderSVG.winner(player);
-        svgContainer.appendChild(svg)
+        svgContainer.appendChild(svg);
+        // keep track of how many times the user wins
+        state[player].wins++;
+        state[player].element.children[1].innerHTML = state[player].wins;
       } else {
         const svg1 = RenderSVG.winner('red');
         const svg2 = RenderSVG.winner('blue');
@@ -55,9 +61,6 @@ const Game = ((RenderSVG) => {
       player
         ? text.innerHTML = 'WINNER'
         : text.innerHTML = 'DRAW';
-    },
-    init() {
-      document.getElementById('restart-js').addEventListener('click', handleReset);
     },
   }
 })(RenderSVG);

@@ -9,13 +9,10 @@ const Board = ((Game) => {
     },
     resetBoard() {
       state.board = emptyBoard.slice();
-      state.player = 'red';
     },
     updateBoard(index) {
       state.board[index] = Game.getPlayer();
       Game.switchPlayer();
-    },
-    init() {
     },
   }
 })(Game)
