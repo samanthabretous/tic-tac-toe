@@ -4,11 +4,6 @@
     <meta charset="utf-8">
     <title>TIC TAC TOE</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script type="text/javascript" src="./javascript/board.js" defer></script>
-    <script type="text/javascript" src="./javascript/game.js" defer></script>
-    <script type="text/javascript" src="./javascript/renderSVG.js" defer></script>
-    <script type="text/javascript" src="./javascript/boardActions.js" defer></script>
-    <script type="text/javascript" src="./javascript/entry.js" defer></script>
   </head>
   <body>
     <aside>
@@ -24,11 +19,29 @@
       </div>
     </aside>
     <main>
-      <section id="board-js" class="board">
+      <section>
+        <div id="board-js" class="board"></div>
         <!-- rendered board game -->
+        <div id="show_winner-js" class="show_winner">
+          <figure></figure>
+          <p></p>
+        </div>
       </section>
-      <div id="show_winner-js" class="show_winner"></div>
     </main>
     <button id="restart-js" class="restart">RESTART GAME</button>
   </body>
+  <script type="text/javascript">
+    [
+      'javascript/renderSVG.js',
+      'javascript/game.js',
+      'javascript/board.js',
+      'javascript/boardActions.js',
+      'javascript/entry.js',
+    ].forEach((src) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = false;
+      document.head.appendChild(script);
+    });
+  </script>
 </html>

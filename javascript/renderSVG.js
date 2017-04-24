@@ -54,17 +54,28 @@ const RenderSVG = (() => {
     return svg;
   };
   return {
+    winner(player) {
+      if(player === 'red') {
+        const svg = createX();
+        return svg;
+      } else {
+        const svg = createCircle();
+        return svg;
+      }
+    },
     // insert svg based on player
-    init(color, index) {
+    init(color, index, lastClicked) {
       const square = document.createElement('button');
       if (color === 'red') {
-        var svg = createX();
+        const svg = createX();
         square.appendChild(svg)
       } else if (color === 'blue') {
-        var svg = createCircle();
+        const svg = createCircle();
         square.appendChild(svg)
-        // image.setAttribute('src', './svg/o.svg');
       }
+      // stop from re-animating all squares
+      if(lastClicked == index && !index) square.classList.add('animate');
+
       square.classList.add('square', color);
       square.id = index;
       return square;

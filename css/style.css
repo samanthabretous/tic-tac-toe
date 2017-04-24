@@ -23,7 +23,7 @@
   --red: #C05746;
   --board_border: 10px solid var(--lightgreen);
 }
-title {
+title, script {
   display: none;
 }
 
@@ -97,19 +97,31 @@ main {
   height: 70%;
   background: var(--lightpurple);
 }
+
 .board {
   display: flex;
   flex-wrap: wrap;
-  width: 300px;
+  width: 30vw;
+  height: 30vw;
+}
+.hide {
+  display: none;
+}
+.show_winner {
+  display: none;
+  font-weight: bold;
+  transition: opacity 1000ms;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
 }
 
 .square {
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 10vw;
+  height: 10vw;
 }
 .square:nth-child(3n+0) {
   border-left: 10px solid var(--purple);
@@ -131,31 +143,29 @@ main {
   border-top: 10px solid var(--purple);
 }
 
-
 .square svg {
   width: 85%;
   height: auto;
 }
 
-
-line {
+.animate line {
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
-  animation: dash 1s linear forwards;
+  animation: dash 300ms linear forwards;
 }
 
 .line1 {
 
 }
 
-.line2 {
-
+.animate .line2 {
+  animation-delay: 100ms;
 }
 
-circle {
+.animate circle {
   stroke-dasharray: 500;
   stroke-dashoffset: 500;
-  animation: dash 1s linear forwards;
+  animation: dash 300ms linear forwards;
   transform-origin: center;
   transform: rotate(-30deg);
 }

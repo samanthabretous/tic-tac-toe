@@ -1,29 +1,21 @@
-const Board = (() => {
+const Board = ((Game) => {
   const emptyBoard = [null, null, null, null, null, null, null, null, null];
   const state = {
-    board: emptyBoard,
-    player: 'red'
+    board: emptyBoard.slice(),
   };
   return {
-    getPlayer() {
-      return state.player;
-    },
-    switchPlayer() {
-      state.player = state.player === 'red' ? 'blue' : 'red';
-      return state.player;
-    },
     getBoard() {
       return state.board;
     },
     resetBoard() {
-      state.board = emptyBoard;
+      state.board = emptyBoard.slice();
       state.player = 'red';
     },
     updateBoard(index) {
-      state.board[index] = state.player;
-      this.switchPlayer()
+      state.board[index] = Game.getPlayer();
+      Game.switchPlayer();
     },
     init() {
     },
   }
-})()
+})(Game)
